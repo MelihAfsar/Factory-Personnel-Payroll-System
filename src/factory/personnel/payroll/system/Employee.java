@@ -5,13 +5,15 @@ public class Employee extends Person{
     private double grossSalary;
     private double tax;
     private double hourlyWage;
+    private int workingHours;
     
     public Employee(){}
     
-    public Employee(int id,String name,String surname,int age,String eMail,String department,String address,double salary,double grossSalary,double tax,double hourlyWage){
+    public Employee(int id,String name,String surname,String gender,int age,String eMail,String department,String address,double salary,double grossSalary,double tax,double hourlyWage,int workingHours){
         super.setId(id);
         super.setName(name);
         super.setSurname(surname);
+        super.setGender(gender);
         super.setAge(age);
         super.seteMail(eMail);
         super.setDepartment(department);
@@ -20,6 +22,7 @@ public class Employee extends Person{
         this.grossSalary = grossSalary;
         this.tax = tax;
         this.hourlyWage = hourlyWage;
+        this.workingHours = workingHours;
     }
 
     public double getSalary() {return salary;}
@@ -33,5 +36,7 @@ public class Employee extends Person{
 
     public double getHourlyWage() {return hourlyWage;}
     public void setHourlyWage(double hourlyWage) {this.hourlyWage = hourlyWage;}
-    
+
+    public int getWorkingHours() {return workingHours;}
+    public void setWorkingHours(int workingHours) {this.workingHours = workingHours;}
 }

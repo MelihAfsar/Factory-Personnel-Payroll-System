@@ -1,31 +1,8 @@
 package graphicalUserInterface;
-import SQLDataBase.DbManager;
-import factory.personnel.payroll.system.Employee;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 /* @author AFSAR */
-public class frmPersonViewing extends javax.swing.JFrame {
-    DefaultTableModel model;
-    public frmPersonViewing() {
+public class frmBase extends javax.swing.JFrame {
+    public frmBase() {
         initComponents();
-        model = (DefaultTableModel) tblEmployee.getModel();
-        
-        try {
-            ArrayList<Employee> employees = DbManager.selectDemo();
-            for (Employee employee: employees) {
-                Object[] row = {employee.getId(),employee.getName(),employee.getSurname()
-                        ,employee.getGender(),employee.getAge(),employee.geteMail()
-                        ,employee.getDepartment(),employee.getAddress(),employee.getSalary()
-                        ,employee.getGrossSalary(),employee.getTax(),employee.getHourlyWage(),employee.getWorkingHours()};
-                model.addRow(row);
-                
-            }
-        } catch (SQLException ex) {}
     }
 
     @SuppressWarnings("unchecked")
@@ -37,7 +14,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
         imgLockOpen = new javax.swing.JLabel();
         lblFactoryName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmployee = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         lblFooter2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         lblFooter1 = new javax.swing.JLabel();
@@ -53,7 +30,6 @@ public class frmPersonViewing extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
@@ -90,19 +66,22 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
-        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id", "name", "surname", "gender", "age", "eMail", "department", "address", "salary", "grossSalary", "tax", "hourlyWage", "workingHours"
+                "id", "name", "surname", "gender", "age", "eMail", "Department", "Address", "Title 9", "Title 10"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,7 +92,16 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblEmployee);
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         lblFooter2.setBackground(new java.awt.Color(255, 255, 255));
         lblFooter2.setFont(new java.awt.Font("Times New Roman", 1, 16)); // NOI18N
@@ -155,12 +143,10 @@ public class frmPersonViewing extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgUpdate.png"))); // NOI18N
         jLabel1.setText("      Update");
 
-        jLabel2.setBackground(new java.awt.Color(102, 102, 255));
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgView.png"))); // NOI18N
         jLabel2.setText("   View");
-        jLabel2.setOpaque(true);
 
         imgNotes.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgNotes.setForeground(new java.awt.Color(0, 0, 153));
@@ -208,7 +194,7 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        imgSearch.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        imgSearch.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
         imgSearch.setForeground(new java.awt.Color(0, 0, 204));
         imgSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgSearchPerson.png"))); // NOI18N
         imgSearch.setText("  Search :");
@@ -218,15 +204,8 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 txtSearchActionPerformed(evt);
             }
         });
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
 
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setText("Personnel Information Display Screen");
+        jLabel4.setText("jLabel4");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -241,19 +220,20 @@ public class frmPersonViewing extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
                                 .addComponent(imgSearch)
-                                .addGap(33, 33, 33)
-                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(48, 48, 48)
+                                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,13 +275,6 @@ public class frmPersonViewing extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        String searchKey = txtSearch.getText();
-        TableRowSorter<DefaultTableModel> tableRowSorter = new TableRowSorter<DefaultTableModel>(model);
-        tblEmployee.setRowSorter(tableRowSorter);
-        tableRowSorter.setRowFilter(RowFilter.regexFilter(searchKey));
-    }//GEN-LAST:event_txtSearchKeyReleased
-
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -315,19 +288,20 @@ public class frmPersonViewing extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmPersonViewing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmPersonViewing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmPersonViewing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmPersonViewing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmBase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmPersonViewing().setVisible(true);
+                new frmBase().setVisible(true);
             }
         });
     }
@@ -347,10 +321,10 @@ public class frmPersonViewing extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblFactoryName;
     private javax.swing.JLabel lblFooter1;
     private javax.swing.JLabel lblFooter2;
-    private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

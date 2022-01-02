@@ -4,6 +4,7 @@ public class Person {
     private int id;
     private String name;
     private String surname;
+    private String gender;
     private int age;
     private String eMail;
     private String department;
@@ -13,10 +14,11 @@ public class Person {
         
     }
     
-    public Person(int id, String name, String surname, int age, String eMail,String department,String address){
+    public Person(int id, String name, String surname,String gender, int age, String eMail,String department,String address){
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.gender = gender;
         this.age = age;
         this.eMail = eMail;
         this.department = department;
@@ -43,4 +45,7 @@ public class Person {
 
     public String getAddress() {return address;}
     public void setAddress(String address) {this.address = address;}
+
+    public String getGender() {return gender;}
+    public void setGender(String gender) {this.gender = gender;}
 }
