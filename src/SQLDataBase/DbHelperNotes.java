@@ -1,13 +1,14 @@
 package SQLDataBase;
-/* @author AFSAR */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DbHelper {
+/*@author AFSAR*/
+public class DbHelperNotes {
     private String userName = "root";
     private String userPassword = "12345";
-    private String dbUrl = "jdbc:mysql://localhost:3306/factoryPersonnelPayrollSystem";
+    private String dbUrl = "jdbc:mysql://localhost:3306/factorynotes";
     
     public Connection getConnection() throws SQLException{
         return DriverManager.getConnection(dbUrl,userName,userPassword);

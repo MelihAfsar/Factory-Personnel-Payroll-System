@@ -28,6 +28,10 @@ public class frmHomePage extends javax.swing.JFrame {
         imgView = new javax.swing.JLabel();
         imgNotes = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
+        lblTotalPersonnel = new javax.swing.JLabel();
+        lblFemalePersonnel = new javax.swing.JLabel();
+        lblMalePersonnel = new javax.swing.JLabel();
+        lblSalaryPaid = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,6 +208,34 @@ public class frmHomePage extends javax.swing.JFrame {
         lblHome.setForeground(new java.awt.Color(0, 0, 204));
         lblHome.setText("Home");
 
+        lblTotalPersonnel.setBackground(new java.awt.Color(255, 153, 0));
+        lblTotalPersonnel.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        lblTotalPersonnel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotalPersonnel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/totalPersonnel.png"))); // NOI18N
+        lblTotalPersonnel.setText(" Total Personnel :");
+        lblTotalPersonnel.setOpaque(true);
+
+        lblFemalePersonnel.setBackground(new java.awt.Color(255, 51, 51));
+        lblFemalePersonnel.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        lblFemalePersonnel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFemalePersonnel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/femalePersonnel.png"))); // NOI18N
+        lblFemalePersonnel.setText("Female Personnel :");
+        lblFemalePersonnel.setOpaque(true);
+
+        lblMalePersonnel.setBackground(new java.awt.Color(0, 204, 204));
+        lblMalePersonnel.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        lblMalePersonnel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMalePersonnel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/malePersonnel.png"))); // NOI18N
+        lblMalePersonnel.setText("Male Personnel :");
+        lblMalePersonnel.setOpaque(true);
+
+        lblSalaryPaid.setBackground(new java.awt.Color(0, 153, 51));
+        lblSalaryPaid.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        lblSalaryPaid.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSalaryPaid.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/salaryPaid.png"))); // NOI18N
+        lblSalaryPaid.setText("Salary Paid :");
+        lblSalaryPaid.setOpaque(true);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -219,7 +251,18 @@ public class frmHomePage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblHome, javax.swing.GroupLayout.DEFAULT_SIZE, 1382, Short.MAX_VALUE)
-                        .addGap(27, 27, 27))))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblSalaryPaid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lblTotalPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblFemalePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(75, 75, 75)
+                                .addComponent(lblMalePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(147, 147, 147))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +272,14 @@ public class frmHomePage extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lblHome)
+                        .addGap(73, 73, 73)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTotalPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblFemalePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMalePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblSalaryPaid, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(89, 89, 89)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -330,8 +380,12 @@ public class frmHomePage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblFactoryName;
+    private javax.swing.JLabel lblFemalePersonnel;
     private javax.swing.JLabel lblFooter1;
     private javax.swing.JLabel lblFooter2;
     private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblMalePersonnel;
+    private javax.swing.JLabel lblSalaryPaid;
+    private javax.swing.JLabel lblTotalPersonnel;
     // End of variables declaration//GEN-END:variables
 }

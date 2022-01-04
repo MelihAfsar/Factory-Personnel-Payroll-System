@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 public class frmLogin extends javax.swing.JFrame {
     public frmLogin() {
         initComponents();
-        
     }
     
     @SuppressWarnings("unchecked")
@@ -216,22 +215,7 @@ public class frmLogin extends javax.swing.JFrame {
    
         if(userName.equals(txtName.getText()) && userPassword.equals(txtPassword.getText())){
             DbManager baseManager = new DbManager();
-            /**
-            try {
-                baseManager.deleteDemo();
-            } catch (SQLException ex) {
-                Logger.getLogger(frmHomePage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            */
-            
-      
-            try {
-                DateFunction.date();
-            } catch (ParseException ex) {
-                Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }
             System.out.println("Login successful...");
-            
             FrameChangeSettings.setVisible(this,new frmHomePage());
             
         }else{

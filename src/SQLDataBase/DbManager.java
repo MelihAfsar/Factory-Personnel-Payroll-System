@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class DbManager {
     public static void deleteDemo()throws SQLException{
-        DbHelper helper = new DbHelper();
+        DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -26,7 +26,7 @@ public class DbManager {
     }
     
     public static ArrayList<Employee> selectDemo() throws SQLException {
-        DbHelper helper = new DbHelper();
+        DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet;
@@ -64,7 +64,7 @@ public class DbManager {
     }
 
     public static void insertData() throws SQLException {
-        DbHelper helper = new DbHelper();
+        DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
         try {
@@ -99,7 +99,7 @@ public class DbManager {
     }
     
     public static void updateData() throws SQLException {
-        DbHelper helper = new DbHelper();
+        DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
         try {

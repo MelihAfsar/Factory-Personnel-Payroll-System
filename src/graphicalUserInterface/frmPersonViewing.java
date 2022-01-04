@@ -25,7 +25,6 @@ public class frmPersonViewing extends javax.swing.JFrame {
                         ,employee.getDepartment(),employee.getAddress(),employee.getSalary()
                         ,employee.getGrossSalary(),employee.getTax(),employee.getHourlyWage(),employee.getWorkingHours()};
                 model.addRow(row);
-                
             }
         } catch (SQLException ex) {}
     }

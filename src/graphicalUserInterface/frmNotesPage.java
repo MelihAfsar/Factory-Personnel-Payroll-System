@@ -1,11 +1,28 @@
 package graphicalUserInterface;
 
+import SQLDataBase.DbHelperEmployee;
+import SQLDataBase.DbHelperNotes;
+import factory.personnel.payroll.system.Note;
 import guiManager.FrameChangeSettings;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /* @author AFSAR */
 public class frmNotesPage extends javax.swing.JFrame {
+    DefaultTableModel model;
     public frmNotesPage() {
         initComponents();
+        populateTable();
         setLocationRelativeTo(null);
     }
 
@@ -28,6 +45,23 @@ public class frmNotesPage extends javax.swing.JFrame {
         imgView = new javax.swing.JLabel();
         imgNotes = new javax.swing.JLabel();
         lblNotes = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblNotes = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtAddNoteId = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtNote = new javax.swing.JTextArea();
+        btnNoteAdd = new javax.swing.JButton();
+        lblDate = new javax.swing.JLabel();
+        dateChooser = new com.toedter.calendar.JDateChooser();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtDeleteNoteId = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -200,7 +234,170 @@ public class frmNotesPage extends javax.swing.JFrame {
         );
 
         lblNotes.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        lblNotes.setForeground(new java.awt.Color(0, 0, 153));
         lblNotes.setText("Notes");
+
+        tblNotes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "noteId", "note", "date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblNotes);
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel3.setText("Add Note");
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
+        jLabel1.setText("Note Id:");
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
+        jLabel2.setText("Note:");
+
+        txtAddNoteId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAddNoteIdActionPerformed(evt);
+            }
+        });
+
+        txtNote.setColumns(20);
+        txtNote.setRows(5);
+        jScrollPane2.setViewportView(txtNote);
+
+        btnNoteAdd.setBackground(new java.awt.Color(0, 0, 204));
+        btnNoteAdd.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btnNoteAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnNoteAdd.setText("ADD");
+        btnNoteAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNoteAddActionPerformed(evt);
+            }
+        });
+
+        lblDate.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
+        lblDate.setText("Date:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblDate))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                                .addComponent(txtAddNoteId))
+                            .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(btnNoteAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtAddNoteId, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDate)
+                    .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(btnNoteAdd)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel4.setText("Delete Note");
+
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 15)); // NOI18N
+        jLabel5.setText("Note Id:");
+
+        txtDeleteNoteId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDeleteNoteIdActionPerformed(evt);
+            }
+        });
+
+        jButton2.setBackground(new java.awt.Color(0, 0, 204));
+        jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("DELETE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                        .addComponent(txtDeleteNoteId, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtDeleteNoteId, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(25, 25, 25))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -215,22 +412,37 @@ public class frmNotesPage extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblNotes, javax.swing.GroupLayout.DEFAULT_SIZE, 1382, Short.MAX_VALUE)
                         .addGap(27, 27, 27))
-                    .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(61, 61, 61))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lblNotes)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -279,6 +491,70 @@ public class frmNotesPage extends javax.swing.JFrame {
         FrameChangeSettings.setVisible(this,new frmLogin());
     }//GEN-LAST:event_imgLockOpenMouseClicked
 
+    private void txtAddNoteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddNoteIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAddNoteIdActionPerformed
+
+    private void btnNoteAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNoteAddActionPerformed
+        Connection connection = null;
+        DbHelperNotes helper = new DbHelperNotes();
+        PreparedStatement statement = null;
+
+        try{
+            connection = helper.getConnection();
+            String sql = "insert into factorynotes.notes (noteId,note,date) values(?,?,?)"; 
+            statement = connection.prepareStatement(sql);
+            statement.setString(1,txtAddNoteId.getText());
+            statement.setString(2,txtNote.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String date = sdf.format(dateChooser.getDate());
+            statement.setString(3, date);
+            int result = statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Note added.");
+            populateTable();
+        }catch(SQLException exception){
+            helper.showErrorMassage(exception);
+        }finally{
+            try {
+                statement.close();
+                connection.close();
+            } catch (SQLException ex) {
+               
+            }
+        }
+    }//GEN-LAST:event_btnNoteAddActionPerformed
+
+    private void txtDeleteNoteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDeleteNoteIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDeleteNoteIdActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int id = Integer.valueOf(txtDeleteNoteId.getText());
+        DbHelperEmployee helper = new DbHelperEmployee();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = helper.getConnection();
+            String sql = "delete from factorynotes.notes where noteId=?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            int result = statement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Note deleted.");
+            populateTable();
+            System.out.println("Note deleted.");
+        } catch (SQLException exception) {
+            helper.showErrorMassage(exception);
+        } finally {
+            try {
+                statement.close();
+                connection.close();
+                System.out.println("Connection closed.");
+            } catch (SQLException ex) {
+                Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -313,6 +589,8 @@ public class frmNotesPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNoteAdd;
+    private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel imgAdd;
     private javax.swing.JLabel imgAdmin;
     private javax.swing.JLabel imgHome;
@@ -321,12 +599,72 @@ public class frmNotesPage extends javax.swing.JFrame {
     private javax.swing.JLabel imgRemove;
     private javax.swing.JLabel imgUpdate;
     private javax.swing.JLabel imgView;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblFactoryName;
     private javax.swing.JLabel lblFooter1;
     private javax.swing.JLabel lblFooter2;
     private javax.swing.JLabel lblNotes;
+    private javax.swing.JTable tblNotes;
+    private javax.swing.JTextField txtAddNoteId;
+    private javax.swing.JTextField txtDeleteNoteId;
+    private javax.swing.JTextArea txtNote;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        model = (DefaultTableModel)tblNotes.getModel();
+        model.setRowCount(0);
+        try {
+            ArrayList<Note> notes = getNotes();
+            for(Note note: notes){
+                Object[] rows = {
+                    note.getId(),
+                    note.getNote(),
+                    note.getDate()};
+                model.addRow(rows);
+            }
+        } catch (SQLException ex) {
+            
+        }
+    }
+    
+    public ArrayList<Note> getNotes()throws SQLException{
+        DbHelperNotes helper = new DbHelperNotes();
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet;
+        ArrayList<Note> notes = null;
+        try {
+            connection = helper.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from factorynotes.notes");
+            notes = new ArrayList<Note>();
+            while (resultSet.next()) {
+                notes.add(new Note(
+                resultSet.getInt("noteId"),
+                resultSet.getString("note"),
+                resultSet.getString("date")));
+            }
+            System.out.println(notes.size());
+        } catch (SQLException exception) {
+            helper.showErrorMassage(exception);
+        } finally {
+            statement.close();
+            connection.close();
+            System.out.println("Connection closed...");
+        }
+        return notes;
+    }
 }
