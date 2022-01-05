@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DbManager {
-    public static void deleteDemo()throws SQLException{
+    public static void deleteDemo(int id)throws SQLException{
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -13,7 +13,7 @@ public class DbManager {
             connection = helper.getConnection();
             String sql = "delete from factoryPersonnelPayrollSystem.employee where id=?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, 8);
+            statement.setInt(1, id);
             int result = statement.executeUpdate();
             System.out.println("Personnel deleted.");
         } catch (SQLException exception) {
@@ -63,7 +63,8 @@ public class DbManager {
         return employees;
     }
 
-    public static void insertData() throws SQLException {
+    public static void insertData(int id,String name,String surname, String gender, int age, String eMail, String department, 
+            String address, Double salary, Double grossSalary, Double tax, double hourlyWage, int workingHours) throws SQLException {
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
@@ -72,19 +73,19 @@ public class DbManager {
             String sql = "insert into factoryPersonnelPayrollSystem.employee(id,name,surname,gender,age"
                     + ",eMail,department,address,salary,grossSalary,tax,hourlyWage,workingHours) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1,5);
-            statement.setString(2,"Hakan");
-            statement.setString(3,"Çelik");
-            statement.setString(4,"male");
-            statement.setInt(5,26);
-            statement.setString(6,"hknclk@outlook.com");
-            statement.setString(7,"Nakliye");
-            statement.setString(8,"Karacabey");
-            statement.setDouble(9,0.0);
-            statement.setDouble(10,16000.0);
-            statement.setDouble(11,0.0);
-            statement.setDouble(12,40.0);
-            statement.setInt(13,200);
+            statement.setInt(1,id);
+            statement.setString(2,name);
+            statement.setString(3,surname);
+            statement.setString(4,gender);
+            statement.setInt(5,age);
+            statement.setString(6,eMail);
+            statement.setString(7,department);
+            statement.setString(8,address);
+            statement.setDouble(9,salary);
+            statement.setDouble(10,grossSalary);
+            statement.setDouble(11,tax);
+            statement.setDouble(12,hourlyWage);
+            statement.setInt(13,workingHours);
             
             int result = statement.executeUpdate();
             System.out.println("Personnel added");

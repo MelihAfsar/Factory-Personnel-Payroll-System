@@ -64,6 +64,7 @@ public class frmNotesPage extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
@@ -518,6 +519,8 @@ public class frmNotesPage extends javax.swing.JFrame {
             try {
                 statement.close();
                 connection.close();
+                txtAddNoteId.setText("");
+                txtNote.setText("");
             } catch (SQLException ex) {
                
             }
@@ -549,6 +552,7 @@ public class frmNotesPage extends javax.swing.JFrame {
                 statement.close();
                 connection.close();
                 System.out.println("Connection closed.");
+                txtDeleteNoteId.setText("");
             } catch (SQLException ex) {
                 Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
             }
