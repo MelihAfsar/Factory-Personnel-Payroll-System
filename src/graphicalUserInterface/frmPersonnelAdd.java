@@ -114,6 +114,8 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
         lblFooter2.setText("ABC Company © 2021 - 2022");
         lblFooter2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
         lblFooter1.setBackground(new java.awt.Color(255, 255, 255));
         lblFooter1.setFont(new java.awt.Font("Times New Roman", 2, 16)); // NOI18N
         lblFooter1.setForeground(new java.awt.Color(0, 0, 153));
@@ -121,25 +123,41 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
         lblFooter1.setText("Developed by Melih Afsar");
         lblFooter1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        imgHome.setBackground(new java.awt.Color(204, 204, 204));
         imgHome.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgHome.setForeground(new java.awt.Color(0, 0, 153));
         imgHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgHome.png"))); // NOI18N
         imgHome.setText("      Home");
         imgHome.setToolTipText("");
+        imgHome.setOpaque(true);
         imgHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgHomeMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgHomeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgHomeMouseExited(evt);
+            }
         });
 
+        imgAdmin.setBackground(new java.awt.Color(204, 204, 204));
         imgAdmin.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgAdmin.setForeground(new java.awt.Color(0, 0, 153));
         imgAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgAdmin.png"))); // NOI18N
         imgAdmin.setText("      Admin");
         imgAdmin.setToolTipText("");
+        imgAdmin.setOpaque(true);
         imgAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgAdminMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgAdminMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgAdminMouseExited(evt);
             }
         });
 
@@ -155,43 +173,75 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
             }
         });
 
+        imgRemove.setBackground(new java.awt.Color(204, 204, 204));
         imgRemove.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgRemove.setForeground(new java.awt.Color(0, 0, 153));
         imgRemove.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgRemove.png"))); // NOI18N
         imgRemove.setText("     Remove");
+        imgRemove.setOpaque(true);
         imgRemove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgRemoveMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgRemoveMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgRemoveMouseExited(evt);
+            }
         });
 
+        imgPersonnelUpdate.setBackground(new java.awt.Color(204, 204, 204));
         imgPersonnelUpdate.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgPersonnelUpdate.setForeground(new java.awt.Color(0, 0, 153));
         imgPersonnelUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgUpdate.png"))); // NOI18N
         imgPersonnelUpdate.setText("      Update");
+        imgPersonnelUpdate.setOpaque(true);
         imgPersonnelUpdate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgPersonnelUpdateMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgPersonnelUpdateMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgPersonnelUpdateMouseExited(evt);
+            }
         });
 
+        imgPersonnelView.setBackground(new java.awt.Color(204, 204, 204));
         imgPersonnelView.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgPersonnelView.setForeground(new java.awt.Color(0, 0, 153));
         imgPersonnelView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgView.png"))); // NOI18N
         imgPersonnelView.setText("   View");
+        imgPersonnelView.setOpaque(true);
         imgPersonnelView.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgPersonnelViewMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgPersonnelViewMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgPersonnelViewMouseExited(evt);
+            }
         });
 
+        imgNotes.setBackground(new java.awt.Color(204, 204, 204));
         imgNotes.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         imgNotes.setForeground(new java.awt.Color(0, 0, 153));
         imgNotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/imgEdit.png"))); // NOI18N
         imgNotes.setText("       Notes");
+        imgNotes.setOpaque(true);
         imgNotes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 imgNotesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                imgNotesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                imgNotesMouseExited(evt);
             }
         });
 
@@ -199,20 +249,19 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imgPersonnelAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(imgAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imgPersonnelUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imgHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblFooter1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(imgRemove, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgPersonnelView, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgPersonnelUpdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgNotes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imgHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addComponent(imgPersonnelAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(imgNotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imgPersonnelView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imgRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(imgAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,7 +360,7 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
         btnAdd.setBackground(new java.awt.Color(0, 0, 204));
         btnAdd.setFont(new java.awt.Font("Trebuchet MS", 1, 22)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setText("ADD");
+        btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -418,11 +467,9 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
                     .addComponent(lblHourlyWage)
                     .addComponent(txtHourlyWage, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAdd)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -632,6 +679,54 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
         lblGSalary.setText("");
     }//GEN-LAST:event_btnResetActionPerformed
 
+    private void imgHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgHomeMouseEntered
+        imgHome.setBackground(new java.awt.Color(153, 153, 255));
+    }//GEN-LAST:event_imgHomeMouseEntered
+
+    private void imgHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgHomeMouseExited
+        imgHome.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_imgHomeMouseExited
+
+    private void imgNotesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgNotesMouseEntered
+        imgNotes.setBackground(new java.awt.Color(153, 153, 255));
+    }//GEN-LAST:event_imgNotesMouseEntered
+
+    private void imgNotesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgNotesMouseExited
+        imgNotes.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_imgNotesMouseExited
+
+    private void imgPersonnelUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgPersonnelUpdateMouseEntered
+        imgPersonnelUpdate.setBackground(new java.awt.Color(153, 153, 255));
+    }//GEN-LAST:event_imgPersonnelUpdateMouseEntered
+
+    private void imgPersonnelUpdateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgPersonnelUpdateMouseExited
+        imgPersonnelUpdate.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_imgPersonnelUpdateMouseExited
+
+    private void imgPersonnelViewMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgPersonnelViewMouseEntered
+        imgPersonnelView.setBackground(new java.awt.Color(153, 153, 255));
+    }//GEN-LAST:event_imgPersonnelViewMouseEntered
+
+    private void imgPersonnelViewMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgPersonnelViewMouseExited
+        imgPersonnelView.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_imgPersonnelViewMouseExited
+
+    private void imgRemoveMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgRemoveMouseEntered
+        imgRemove.setBackground(new java.awt.Color(153, 153, 255));
+    }//GEN-LAST:event_imgRemoveMouseEntered
+
+    private void imgRemoveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgRemoveMouseExited
+        imgRemove.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_imgRemoveMouseExited
+
+    private void imgAdminMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAdminMouseEntered
+        imgAdmin.setBackground(new java.awt.Color(153, 153, 255));
+    }//GEN-LAST:event_imgAdminMouseEntered
+
+    private void imgAdminMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgAdminMouseExited
+        imgAdmin.setBackground(new java.awt.Color(204, 204, 204));
+    }//GEN-LAST:event_imgAdminMouseExited
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -713,7 +808,4 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
     private javax.swing.JTextField txteMail;
     // End of variables declaration//GEN-END:variables
 
-    private void insertData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

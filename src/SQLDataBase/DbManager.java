@@ -1,6 +1,7 @@
 package SQLDataBase;
 /*@author AFSAR*/
 import factory.personnel.payroll.system.Employee;
+import factory.personnel.payroll.system.ManagementManager;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -99,15 +100,26 @@ public class DbManager {
         }
     }
     
-    public static void updateData() throws SQLException {
+    public void updateData(int id,String address, double hourlyWage, int workingHours, double tax) throws SQLException {
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
+        double grossSalary = hourlyWage * workingHours;
+        double salary = 0;
+        salary = ManagementManager.salaryCalculator(hourlyWage,workingHours,tax);
+        
         try {
             connection = helper.getConnection();
-            String sql = "update factoryPersonnelPayrollSystem.employee set address= 'Orhaneli', tax=10.0 where id=?";
+            String sql = "update factoryPersonnelPayrollSystem.employee set address = ?, hourlyWage = ?, workingHours = ? ,tax = ?, salary = ?, grossSalary = ? where id=?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, 2);
+            statement.setString(1, address);
+            statement.setDouble(2, hourlyWage);
+            statement.setInt(3, workingHours);
+            statement.setDouble(4, tax);
+            statement.setDouble(5, salary);
+            statement.setDouble(6, grossSalary);
+            statement.setInt(7, id);
+                    
             int result = statement.executeUpdate();
             System.out.println("Personnel updated");
         } catch (SQLException exception) {
