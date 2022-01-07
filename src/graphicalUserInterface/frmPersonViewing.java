@@ -12,13 +12,14 @@ import javax.swing.table.TableRowSorter;
 /* @author AFSAR */
 public class frmPersonViewing extends javax.swing.JFrame {
     DefaultTableModel model;
+    DbManager dbManager;
     public frmPersonViewing() {
         initComponents();
         setLocationRelativeTo(null);
         model = (DefaultTableModel) tblEmployee.getModel();
-        
+        dbManager = new DbManager();
         try {
-            ArrayList<Employee> employees = DbManager.selectDemo();
+            ArrayList<Employee> employees = dbManager.selectDemo();
             for (Employee employee: employees) {
                 Object[] row = {employee.getId(),employee.getName(),employee.getSurname()
                         ,employee.getGender(),employee.getAge(),employee.geteMail()

@@ -1,9 +1,18 @@
 package graphicalUserInterface;
 
+import SQLDataBase.DbManager;
+import factory.personnel.payroll.system.Employee;
 import guiManager.FrameChangeSettings;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /* @author AFSAR */
 public class frmPersonnelRemove extends javax.swing.JFrame {
+    DbManager dbManager;
+    
     public frmPersonnelRemove() {
         initComponents();
         setLocationRelativeTo(null);
@@ -28,13 +37,30 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
         imgView = new javax.swing.JLabel();
         imgNotes = new javax.swing.JLabel();
         lblRemove = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtPeronnelId = new javax.swing.JTextField();
+        btnShow = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        lblPersonnelId = new javax.swing.JLabel();
+        lblPersonnelName = new javax.swing.JLabel();
+        lblPersonnelSurname = new javax.swing.JLabel();
+        lbleMail = new javax.swing.JLabel();
+        lblDepartment = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 4, true));
-        jPanel3.setOpaque(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 155));
 
@@ -255,6 +281,172 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
         lblRemove.setForeground(new java.awt.Color(0, 0, 153));
         lblRemove.setText("Personnel Remove Menu");
 
+        jPanel6.setBackground(new java.awt.Color(235, 235, 235));
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Enter personne Id to delete !!!");
+
+        jLabel5.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel5.setText("Personnel ID :");
+
+        txtPeronnelId.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        txtPeronnelId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPeronnelIdActionPerformed(evt);
+            }
+        });
+
+        btnShow.setBackground(new java.awt.Color(0, 0, 204));
+        btnShow.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        btnShow.setForeground(new java.awt.Color(255, 255, 255));
+        btnShow.setText("Show");
+        btnShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setBackground(new java.awt.Color(0, 0, 204));
+        btnDelete.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(258, 258, 258)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPeronnelId, javax.swing.GroupLayout.PREFERRED_SIZE, 342, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addComponent(btnShow)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnDelete))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtPeronnelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnShow))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBackground(new java.awt.Color(235, 235, 235));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/person-circle (1).png"))); // NOI18N
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel3.setText("Personnel Id :");
+
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel4.setText("Personnel Name :");
+
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel6.setText("Personnel Surname :");
+
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel7.setText("Personnel eMail :");
+
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel8.setText("Personnel Department :");
+
+        lblPersonnelId.setBackground(new java.awt.Color(215, 215, 215));
+        lblPersonnelId.setFont(new java.awt.Font("Trebuchet MS", 1, 19)); // NOI18N
+        lblPersonnelId.setText("id");
+
+        lblPersonnelName.setFont(new java.awt.Font("Trebuchet MS", 1, 19)); // NOI18N
+        lblPersonnelName.setText("name");
+
+        lblPersonnelSurname.setFont(new java.awt.Font("Trebuchet MS", 1, 19)); // NOI18N
+        lblPersonnelSurname.setText("surname");
+
+        lbleMail.setFont(new java.awt.Font("Trebuchet MS", 1, 19)); // NOI18N
+        lbleMail.setText("eMail");
+
+        lblDepartment.setFont(new java.awt.Font("Trebuchet MS", 1, 19)); // NOI18N
+        lblDepartment.setText("department");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(87, 87, 87)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbleMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPersonnelId, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPersonnelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPersonnelSurname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(150, 150, 150))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(lblPersonnelId))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(lblPersonnelName))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(lblPersonnelSurname))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(lbleMail))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(lblDepartment)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -264,13 +456,20 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 1382, Short.MAX_VALUE)
-                        .addGap(27, 27, 27))))
+                        .addComponent(lblRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(lblFooter2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(335, 335, 335))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(173, 173, 173))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +479,11 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lblRemove)
+                        .addGap(33, 33, 33)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
                         .addComponent(lblFooter2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -382,6 +585,38 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
         imgAdmin.setBackground(new java.awt.Color(204, 204, 204));
     }//GEN-LAST:event_imgAdminMouseExited
 
+    private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
+        int id = Integer.valueOf(txtPeronnelId.getText());
+        lblPersonnelId.setText(String.valueOf(id));
+        
+        dbManager = new DbManager();
+        try {
+            ArrayList<Employee> employees = dbManager.selectDemo();
+            lblPersonnelName.setText(employees.get(id).getName());
+            lblPersonnelSurname.setText(employees.get(id).getSurname());
+            lblDepartment.setText(employees.get(id).getDepartment());
+            lbleMail.setText(employees.get(id).getAddress());
+        } catch (SQLException ex) {
+            Logger.getLogger(frmPersonnelRemove.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnShowActionPerformed
+
+    private void txtPeronnelIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPeronnelIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPeronnelIdActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int id = Integer.valueOf(txtPeronnelId.getText());
+        dbManager = new DbManager();
+        try {
+            dbManager.deleteDemo(id);
+            JOptionPane.showMessageDialog(null, "Personnel Deleted.");
+        } catch (SQLException ex) {
+            System.out.println("Failed to delete personnel!!!");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -416,6 +651,8 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnShow;
     private javax.swing.JLabel imgAdd;
     private javax.swing.JLabel imgAdmin;
     private javax.swing.JLabel imgHome;
@@ -424,12 +661,28 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     private javax.swing.JLabel imgRemove;
     private javax.swing.JLabel imgUpdate;
     private javax.swing.JLabel imgView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel lblDepartment;
     private javax.swing.JLabel lblFactoryName;
     private javax.swing.JLabel lblFooter1;
     private javax.swing.JLabel lblFooter2;
+    private javax.swing.JLabel lblPersonnelId;
+    private javax.swing.JLabel lblPersonnelName;
+    private javax.swing.JLabel lblPersonnelSurname;
     private javax.swing.JLabel lblRemove;
+    private javax.swing.JLabel lbleMail;
+    private javax.swing.JTextField txtPeronnelId;
     // End of variables declaration//GEN-END:variables
 }

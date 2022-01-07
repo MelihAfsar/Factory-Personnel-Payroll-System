@@ -1,5 +1,6 @@
 package graphicalUserInterface;
 
+import factory.personnel.payroll.system.PersonManager;
 import guiManager.FrameChangeSettings;
 
 /* @author AFSAR */
@@ -416,7 +417,7 @@ public class frmHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_imgLockOpenMouseClicked
 
     private void lblTotalPersonnelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotalPersonnelMouseEntered
-        lblTotalPersonnel.setText("1");
+        lblTotalPersonnel.setText(String.valueOf(setPersonnelLabel(0)));
     }//GEN-LAST:event_lblTotalPersonnelMouseEntered
 
     private void lblTotalPersonnelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTotalPersonnelMouseExited
@@ -472,7 +473,7 @@ public class frmHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_imgAdminMouseExited
 
     private void lblFemalePersonnelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFemalePersonnelMouseEntered
-        lblFemalePersonnel.setText("2");
+        lblFemalePersonnel.setText(String.valueOf(setPersonnelLabel(1)));
     }//GEN-LAST:event_lblFemalePersonnelMouseEntered
 
     private void lblFemalePersonnelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblFemalePersonnelMouseExited
@@ -480,7 +481,7 @@ public class frmHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_lblFemalePersonnelMouseExited
 
     private void lblMalePersonnelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMalePersonnelMouseEntered
-       lblMalePersonnel.setText("3");
+       lblMalePersonnel.setText(String.valueOf(setPersonnelLabel(2)));
     }//GEN-LAST:event_lblMalePersonnelMouseEntered
 
     private void lblMalePersonnelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMalePersonnelMouseExited
@@ -488,7 +489,7 @@ public class frmHomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_lblMalePersonnelMouseExited
 
     private void lblSalaryPaidMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalaryPaidMouseEntered
-        lblSalaryPaid.setText("5");
+        lblSalaryPaid.setText(String.valueOf(setSalaryPaidLabel()));
     }//GEN-LAST:event_lblSalaryPaidMouseEntered
 
     private void lblSalaryPaidMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalaryPaidMouseExited
@@ -550,4 +551,17 @@ public class frmHomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lblSalaryPaid;
     private javax.swing.JLabel lblTotalPersonnel;
     // End of variables declaration//GEN-END:variables
+
+    private int setPersonnelLabel(int i) {
+        PersonManager personManager = new PersonManager();
+        int[] array = personManager.totalPersonnelCounter();
+        int result = array[i];
+        return result;
+    }
+    
+    private double setSalaryPaidLabel() {
+        PersonManager personManager = new PersonManager();
+        return personManager.totalSalaryPaid();
+    }
+    
 }

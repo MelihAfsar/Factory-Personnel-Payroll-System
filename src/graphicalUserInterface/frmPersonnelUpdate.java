@@ -514,9 +514,16 @@ public class frmPersonnelUpdate extends javax.swing.JFrame {
         try {
             dbManager.updateData(id, address, hourlyWage, workingHours, salaryTax);
             JOptionPane.showMessageDialog(null, "Personnel Updated.");
+            
         } catch (SQLException ex) {
             Logger.getLogger(frmPersonnelUpdate.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("frmPersonnelUptade - btnUpdate error");
+        }finally{
+            txtPersonnelId.setText("");
+            txtPersonnelAddress.setText("");
+            txtPersonnelHourlyWage.setText("");
+            txtWorkingHours.setText("");
+            txtTax.setText("");
         }
         
         

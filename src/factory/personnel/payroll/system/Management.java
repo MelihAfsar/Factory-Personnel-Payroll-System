@@ -17,7 +17,7 @@ public class Management extends Person{
         this.userName = userName;
         this.userPassword = userPassword;
     }
-    
+
     public String getUserName() {return userName;}
     public void setUserName(String userName) {this.userName = userName;}
 

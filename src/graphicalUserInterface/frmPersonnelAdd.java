@@ -652,8 +652,7 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
     private void radioFemaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioFemaleActionPerformed
         if(radioFemale.isSelected()){
             radioMale.setSelected(false);
-        }
-            
+        }    
     }//GEN-LAST:event_radioFemaleActionPerformed
 
     private void txtHourlyWageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHourlyWageActionPerformed

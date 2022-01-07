@@ -1,15 +1,33 @@
 package graphicalUserInterface;
 
+import SQLDataBase.DbManager;
+import SQLDataBase.DbManagerManagement;
+import factory.personnel.payroll.system.Employee;
 import factory.personnel.payroll.system.Management;
 import factory.personnel.payroll.system.Person;
 import guiManager.FrameChangeSettings;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /* @author AFSAR */
 public class frmAdminMenu extends javax.swing.JFrame {
+    DbManagerManagement dbManager;
+    ArrayList<Management> managements;
+    
     public frmAdminMenu() {
         initComponents();
         setLocationRelativeTo(null);
+        dbManager = new DbManagerManagement();
+        
+        try {
+            ArrayList<Management> managements = dbManager.selectDemo();
+            setLabel(managements);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -326,7 +344,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("userPassword :          ************************");
+        jLabel6.setText("userPassword :       *************************");
 
         jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -334,18 +352,23 @@ public class frmAdminMenu extends javax.swing.JFrame {
 
         lblAdmin1Name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin1Name.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin1Name.setText("******************");
 
         lblAdmin1Surname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin1Surname.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin1Surname.setText("******************");
 
         lblAdmin1eMail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin1eMail.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin1eMail.setText("******************");
 
         lblAdmin1Department.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin1Department.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin1Department.setText("******************");
 
         lblAdmin1userName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin1userName.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin1userName.setText("******************");
 
         jLabel26.setBackground(new java.awt.Color(255, 255, 255));
         jLabel26.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -370,19 +393,15 @@ public class frmAdminMenu extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel7))
+                            .addGap(55, 55, 55)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGap(55, 55, 55)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblAdmin1Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblAdmin1Surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblAdmin1eMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(lblAdmin1Department, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblAdmin1userName, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblAdmin1Name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAdmin1Surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAdmin1eMail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAdmin1Department, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblAdmin1userName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jLabel26))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,7 +430,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
                     .addComponent(lblAdmin1userName))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -448,22 +467,27 @@ public class frmAdminMenu extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("userPassword :     ************************");
+        jLabel14.setText("userPassword :       **************************");
 
         lblAdmin2userName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin2userName.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin2userName.setText("*******************");
 
         lblAdmin2Department.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin2Department.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin2Department.setText("*******************");
 
         lblAdmin2eMail.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin2eMail.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin2eMail.setText("*******************");
 
         lblAdmin2Surname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin2Surname.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin2Surname.setText("*******************");
 
         lblAdmin2Name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAdmin2Name.setForeground(new java.awt.Color(255, 255, 255));
+        lblAdmin2Name.setText("*******************");
 
         jLabel27.setBackground(new java.awt.Color(255, 255, 255));
         jLabel27.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -499,7 +523,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(jLabel13)
                             .addComponent(jLabel14))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -659,14 +683,14 @@ public class frmAdminMenu extends javax.swing.JFrame {
                                 .addComponent(lblAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(27, 27, 27))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(59, 59, 59)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(56, 56, 56))))
+                        .addGap(59, 59, 59))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -753,8 +777,7 @@ public class frmAdminMenu extends javax.swing.JFrame {
         String department = txtUpdateDepartment.getText();
         String userName = txtUpdateUserName.getText();
         String userPassword = txtUpdateUserPassword.getText();
-        Management person3 = new Management();
-
+      
         if(value == 1){
             
         }else if(value == 2){
@@ -809,9 +832,21 @@ public class frmAdminMenu extends javax.swing.JFrame {
     private void imgRemoveMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgRemoveMouseExited
         imgRemove.setBackground(new java.awt.Color(204, 204, 204));
     }//GEN-LAST:event_imgRemoveMouseExited
-
-    ArrayList<Management> managements;
-
+  
+    public void setLabel(ArrayList<Management> managements)
+    {
+        lblAdmin1Name.setText(managements.get(0).getName());    
+        lblAdmin1Surname.setText(managements.get(0).getSurname());    
+        lblAdmin1Department.setText(managements.get(0).getDepartment());
+        lblAdmin1eMail.setText(managements.get(0).geteMail());
+        lblAdmin1userName.setText(managements.get(0).getUserName());
+        
+        lblAdmin2Name.setText(managements.get(1).getName());    
+        lblAdmin2Surname.setText(managements.get(1).getSurname());    
+        lblAdmin2Department.setText(managements.get(1).getDepartment());
+        lblAdmin2eMail.setText(managements.get(1).geteMail());
+        lblAdmin2userName.setText(managements.get(1).getUserName());
+    }
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
