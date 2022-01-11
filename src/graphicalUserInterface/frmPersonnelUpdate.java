@@ -1,6 +1,7 @@
 package graphicalUserInterface;
 
 import SQLDataBase.DbManager;
+import factory.personnel.payroll.system.PersonManager;
 import guiManager.FrameChangeSettings;
 import java.sql.SQLException;
 import java.util.logging.Level;

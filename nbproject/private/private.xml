@@ -5,6 +5,9 @@
         <group>
             <file>file:/C:/githubProject/Factory-Personnel-Payroll-System/Factory-Personnel-Payroll-System/src/graphicalUserInterface/frmHomePage.java</file>
             <file>file:/C:/githubProject/Factory-Personnel-Payroll-System/Factory-Personnel-Payroll-System/src/factory/personnel/payroll/system/PersonManager.java</file>
+            <file>file:/C:/githubProject/Factory-Personnel-Payroll-System/Factory-Personnel-Payroll-System/src/graphicalUserInterface/frmPersonnelUpdate.java</file>
+            <file>file:/C:/githubProject/Factory-Personnel-Payroll-System/Factory-Personnel-Payroll-System/src/graphicalUserInterface/frmPersonnelAdd.java</file>
+            <file>file:/C:/githubProject/Factory-Personnel-Payroll-System/Factory-Personnel-Payroll-System/src/SQLDataBase/DbManager.java</file>
         </group>
     </open-files>
 </project-private>

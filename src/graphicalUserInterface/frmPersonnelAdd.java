@@ -1,6 +1,8 @@
 package graphicalUserInterface;
 
 import SQLDataBase.DbManager;
+import factory.personnel.payroll.system.EmployeeManager;
+import factory.personnel.payroll.system.PersonManager;
 import guiManager.FrameChangeSettings;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -633,8 +635,9 @@ public class frmPersonnelAdd extends javax.swing.JFrame {
         Double tax = 0.0;
         double hourlyWage = Double.valueOf(txtHourlyWage.getText());
         int workingHours = Integer.valueOf(txtWorkingHours.getText());
-        Double grossSalary = hourlyWage * workingHours;
-        Double salary = (grossSalary/10)*7; //fonksiyon yazılacak.
+        
+        Double grossSalary = ((hourlyWage * workingHours) + tax);
+        Double salary = PersonManager.salaryCalculator(hourlyWage, workingHours, tax);
         
         lblGSalary.setText(String.valueOf(grossSalary));
         lblSSalary.setText(String.valueOf(salary));

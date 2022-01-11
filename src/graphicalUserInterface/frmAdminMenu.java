@@ -10,24 +10,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
+
 
 /* @author AFSAR */
 public class frmAdminMenu extends javax.swing.JFrame {
-    DbManagerManagement dbManager;
+    DbManager dbManager;
+    DbManagerManagement dbManagerManagement;
     ArrayList<Management> managements;
     
     public frmAdminMenu() {
         initComponents();
         setLocationRelativeTo(null);
-        dbManager = new DbManagerManagement();
-        
-        try {
-            ArrayList<Management> managements = dbManager.selectDemo();
-            setLabel(managements);
-        } catch (SQLException ex) {
-            Logger.getLogger(frmAdminMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        populateFrame();
     }
 
     @SuppressWarnings("unchecked")
@@ -770,19 +767,36 @@ public class frmAdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameUpdateActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int value = comboBoxUpdate.getSelectedIndex();
+        int id = comboBoxUpdate.getSelectedIndex();
         String name = txtNameUpdate.getText();
         String surname = txtUpdateSurname.getText();
-        String mail = txtUpdateeMail.getText();
+        String eMail = txtUpdateeMail.getText();
         String department = txtUpdateDepartment.getText();
         String userName = txtUpdateUserName.getText();
         String userPassword = txtUpdateUserPassword.getText();
-      
-        if(value == 1){
+        
+        id+=1;
+        
+        dbManagerManagement = new DbManagerManagement();
+        
+        try {
+            dbManagerManagement.updateData(id, name, surname, eMail, department,userName,userPassword);
+            JOptionPane.showMessageDialog(null, "Personnel Updated.");
+            populateFrame();
             
-        }else if(value == 2){
+        } catch (SQLException ex) {
+            Logger.getLogger(frmPersonnelUpdate.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("frmPersonnelUptade - btnUpdate error");
+        }finally{
+            txtNameUpdate.setText("");
+            txtUpdateSurname.setText("");
+            txtUpdateeMail.setText("");
+            txtUpdateDepartment.setText("");
+            txtUpdateUserName.setText("");
+            txtUpdateUserPassword.setText("");
             
         }
+               
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void imgHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgHomeMouseEntered
@@ -878,6 +892,16 @@ public class frmAdminMenu extends javax.swing.JFrame {
                 new frmAdminMenu().setVisible(true);
             }
         });
+    }
+    
+    private void populateFrame() {
+        dbManagerManagement = new DbManagerManagement();
+        try {
+            ArrayList<Management> managements = dbManagerManagement.selectDemo();
+            setLabel(managements);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmAdminMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

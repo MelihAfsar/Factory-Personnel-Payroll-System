@@ -1,5 +1,4 @@
 package factory.personnel.payroll.system;
-
 import SQLDataBase.DbManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,14 +33,35 @@ public class PersonManager {
     } 
     
     public double totalSalaryPaid(){
-        dbManager = new DbManager();
-        double total = 0;
-        try {    
-             ArrayList<Employee> employees = dbManager.selectDemo();
-             for (Employee employee: employees) {
-                    total += employee.getSalary();
-                }
-            }catch (SQLException ex) {}
-        return total;
-    } 
+        System.out.println("totalSalaryPaid");
+        return 0;
+    }
+    
+    public static double salaryCalculator(double wageHourly, int hoursWorking, double salaryTax) {
+        /*
+        24.000 TL’ye kadar      15%
+        53.000 TL               20%
+        190.000 TL              27%
+        650.000 TL              35%
+        650.000 TL          	40%
+        */
+           
+        double salary = 0;
+        salary = ((wageHourly * hoursWorking) + salaryTax);
+        
+        if(salary<0)
+            salary = -1.0;
+        else if(salary>=0 && salary<=24000.0)
+            salary*=0.85;
+        else if(salary>24000.0 && salary <=53000.0)
+            salary*=0.8;
+        else if(salary>53000.0 && salary <=190000.0)
+            salary*=0.73;
+        else if(salary>190000 && salary <=650000.0)
+            salary*=0.65;
+        else
+            salary*=0.6;
+        
+        return salary;
+    }
 }

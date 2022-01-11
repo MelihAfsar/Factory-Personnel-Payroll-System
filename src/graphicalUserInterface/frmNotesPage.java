@@ -17,8 +17,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
 /* @author AFSAR */
 public class frmNotesPage extends javax.swing.JFrame {
+    public static int noteSize;
+    
     DefaultTableModel model;
     public frmNotesPage() {
         initComponents();
@@ -61,7 +64,7 @@ public class frmNotesPage extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtDeleteNoteId = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -408,13 +411,13 @@ public class frmNotesPage extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 0, 204));
-        jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("DELETE");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setBackground(new java.awt.Color(0, 0, 204));
+        btnDelete.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("DELETE");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -426,7 +429,7 @@ public class frmNotesPage extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(btnDelete))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -446,7 +449,7 @@ public class frmNotesPage extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtDeleteNoteId, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnDelete)
                 .addGap(25, 25, 25))
         );
 
@@ -550,7 +553,7 @@ public class frmNotesPage extends javax.swing.JFrame {
         Connection connection = null;
         DbHelperNotes helper = new DbHelperNotes();
         PreparedStatement statement = null;
-
+        
         try{
             connection = helper.getConnection();
             String sql = "insert into factorynotes.notes (noteId,note,date) values(?,?,?)"; 
@@ -564,6 +567,7 @@ public class frmNotesPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Note added.");
             populateTable();
         }catch(SQLException exception){
+            JOptionPane.showMessageDialog(null, "Error: Duplicate entry '"+ txtAddNoteId.getText() +"' for key 'notes.PRIMARY'");
             helper.showErrorMassage(exception);
         }finally{
             try {
@@ -581,33 +585,33 @@ public class frmNotesPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDeleteNoteIdActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int id = Integer.valueOf(txtDeleteNoteId.getText());
-        DbHelperEmployee helper = new DbHelperEmployee();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        try {
-            connection = helper.getConnection();
-            String sql = "delete from factorynotes.notes where noteId=?";
-            statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            int result = statement.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Note deleted.");
-            populateTable();
-            System.out.println("Note deleted.");
-        } catch (SQLException exception) {
-            helper.showErrorMassage(exception);
-        } finally {
+            DbHelperEmployee helper = new DbHelperEmployee();
+            Connection connection = null;
+            PreparedStatement statement = null;
             try {
-                statement.close();
-                connection.close();
-                System.out.println("Connection closed.");
-                txtDeleteNoteId.setText("");
-            } catch (SQLException ex) {
-                Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+                connection = helper.getConnection();
+                String sql = "delete from factorynotes.notes where noteId=?";
+                statement = connection.prepareStatement(sql);
+                statement.setInt(1, id);
+                int result = statement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Note deleted.");
+                populateTable();
+                System.out.println("Note deleted.");
+            } catch (SQLException exception) {
+                helper.showErrorMassage(exception);
+            } finally {
+                try {
+                    statement.close();
+                    connection.close();
+                    System.out.println("Connection closed.");
+                    txtDeleteNoteId.setText("");
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmNotesPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }  
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void imgHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgHomeMouseEntered
         imgHome.setBackground(new java.awt.Color(153, 153, 255));
@@ -691,6 +695,7 @@ public class frmNotesPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNoteAdd;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JLabel imgAdd;
@@ -701,7 +706,6 @@ public class frmNotesPage extends javax.swing.JFrame {
     private javax.swing.JLabel imgRemove;
     private javax.swing.JLabel imgUpdate;
     private javax.swing.JLabel imgView;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -759,6 +763,7 @@ public class frmNotesPage extends javax.swing.JFrame {
                 resultSet.getString("note"),
                 resultSet.getString("date")));
             }
+            noteSize = notes.size();
             System.out.println(notes.size());
         } catch (SQLException exception) {
             helper.showErrorMassage(exception);

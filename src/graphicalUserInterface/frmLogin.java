@@ -1,16 +1,21 @@
 package graphicalUserInterface;
 import SQLDataBase.DbManager;
+import SQLDataBase.DbManagerManagement;
 import SomeFunctions.DateFunction;
 import factory.personnel.payroll.system.Employee;
+import factory.personnel.payroll.system.Management;
 import factory.personnel.payroll.system.Person;
 import guiManager.FrameChangeSettings;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /*@author AFSAR */
 public class frmLogin extends javax.swing.JFrame {
+    DbManagerManagement dbManagerManagement;
+    
     public frmLogin() {
         initComponents();
     }
@@ -210,19 +215,21 @@ public class frmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        String userName = "admin";
-        String userPassword = "1234";
-   
-        if(userName.equals(txtName.getText()) && userPassword.equals(txtPassword.getText())){
+    dbManagerManagement = new DbManagerManagement();
+    try {
+        ArrayList<Management> managements = dbManagerManagement.selectDemo();
+        if(managements.get(0).getUserName().equals(txtName.getText()) && managements.get(0).getUserPassword().equals(txtPassword.getText()) 
+                || managements.get(1).getUserName().equals(txtName.getText()) && managements.get(1).getUserPassword().equals(txtPassword.getText())){
             DbManager baseManager = new DbManager();
             System.out.println("Login successful...");
             FrameChangeSettings.setVisible(this,new frmHomePage());
-            
         }else{
             JOptionPane.showMessageDialog(null, "You entered the wrong username or password!!!");
             System.out.println("You entered the wrong username or password!!!");
             btnResetActionPerformed(evt);
-        }
+        }  
+    }catch (SQLException ex) {
+        Logger.getLogger(frmAdminMenu.class.getName()).log(Level.SEVERE, null, ex);} 
     }//GEN-LAST:event_btnOkActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -270,7 +277,7 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
     }
-
+      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnReset;

@@ -1,7 +1,9 @@
 package SQLDataBase;
 /*@author AFSAR*/
 import factory.personnel.payroll.system.Employee;
+import factory.personnel.payroll.system.EmployeeManager;
 import factory.personnel.payroll.system.ManagementManager;
+import factory.personnel.payroll.system.PersonManager;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -104,9 +106,9 @@ public class DbManager {
         DbHelperEmployee helper = new DbHelperEmployee();
         Connection connection = null;
         PreparedStatement statement = null;
-        double grossSalary = hourlyWage * workingHours;
+        double grossSalary = ((hourlyWage * workingHours) + tax);
         double salary = 0;
-        salary = ManagementManager.salaryCalculator(hourlyWage,workingHours,tax);
+        salary = PersonManager.salaryCalculator(hourlyWage,workingHours,tax);
         
         try {
             connection = helper.getConnection();

@@ -1,5 +1,6 @@
 package graphicalUserInterface;
 
+import factory.personnel.payroll.system.EmployeeManager;
 import factory.personnel.payroll.system.PersonManager;
 import guiManager.FrameChangeSettings;
 
@@ -560,8 +561,8 @@ public class frmHomePage extends javax.swing.JFrame {
     }
     
     private double setSalaryPaidLabel() {
-        PersonManager personManager = new PersonManager();
-        return personManager.totalSalaryPaid();
+        EmployeeManager employeeManager = new EmployeeManager();
+        return employeeManager.totalSalaryPaid();
     }
     
 }

@@ -588,7 +588,7 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
         int id = Integer.valueOf(txtPeronnelId.getText());
         lblPersonnelId.setText(String.valueOf(id));
-        
+        id-=1;
         dbManager = new DbManager();
         try {
             ArrayList<Employee> employees = dbManager.selectDemo();
@@ -599,7 +599,6 @@ public class frmPersonnelRemove extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(frmPersonnelRemove.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void txtPeronnelIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPeronnelIdActionPerformed
